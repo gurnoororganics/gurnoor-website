@@ -1,0 +1,369 @@
+/* ── TOKENS (scoped to benefits) ── */
+:root {
+  --ben-earth:  #2C1A0E;
+  --ben-soil:   #4A2C12;
+  --ben-bark:   #7A4A1E;
+  --ben-wheat:  #C8944A;
+  --ben-sun:    #E8B84B;
+  --ben-cream:  #FAF4E8;
+  --ben-leaf:   #4A7C3F;
+  --ben-sage:   #7DAF73;
+  --ben-mint:   #C8DFC4;
+  --ben-white:  #FFFDF7;
+}
+
+/* ── HERO ── */
+.ben-hero {
+  min-height: 100vh;
+  background: var(--ben-earth);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.ben-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(74,124,63,.25) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 20%, rgba(200,148,74,.20) 0%, transparent 60%);
+}
+
+.ben-blob {
+  position: absolute;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  opacity: .07;
+  animation: benMorph 12s ease-in-out infinite alternate;
+}
+.ben-blob-1 { width: 500px; height: 500px; background: var(--ben-leaf); top: -100px; right: -100px; animation-duration: 14s; }
+.ben-blob-2 { width: 350px; height: 350px; background: var(--ben-wheat); bottom: -80px; left: -80px; animation-duration: 10s; animation-direction: alternate-reverse; }
+
+@keyframes benMorph {
+  0%   { border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%; }
+  50%  { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; }
+  100% { border-radius: 55% 45% 65% 35% / 35% 65% 45% 55%; }
+}
+
+.ben-hero-inner {
+  position: relative; z-index: 2;
+  max-width: 760px; margin: 0 auto;
+}
+
+.ben-eyebrow {
+  display: inline-block;
+  font-size: .75rem; font-weight: 700;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--ben-sage); margin-bottom: 1.5rem;
+  opacity: 0; animation: benFadeUp .8s .2s forwards;
+}
+
+.ben-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800; line-height: 1.05;
+  color: var(--ben-white); margin-bottom: 1.5rem;
+  opacity: 0; animation: benFadeUp .9s .4s forwards;
+}
+.ben-title em { font-style: italic; color: var(--ben-sun); }
+
+.ben-sub {
+  font-size: 1.1rem; line-height: 1.8;
+  color: rgba(255,253,247,.7);
+  max-width: 520px; margin: 0 auto 2.5rem;
+  opacity: 0; animation: benFadeUp .9s .6s forwards;
+}
+
+.ben-scroll {
+  display: inline-flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--ben-wheat); font-size: .7rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  opacity: 0; animation: benFadeUp .9s 1s forwards;
+}
+.ben-scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--ben-wheat), transparent);
+  animation: benScrollPulse 2s ease-in-out infinite;
+}
+@keyframes benScrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: .4; transform: scaleY(.6); }
+}
+
+@keyframes benFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── DIVIDER ── */
+.ben-divider {
+  display: block; width: 100%; height: 80px;
+  background: var(--ben-earth);
+  clip-path: ellipse(55% 100% at 50% 0%);
+}
+
+/* ── SHARED ── */
+.ben-container { max-width: 1100px; margin: 0 auto; }
+
+.ben-section-label {
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--ben-leaf); margin-bottom: .75rem;
+}
+
+.ben-section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; line-height: 1.2;
+  color: var(--ben-earth); margin-bottom: 1rem;
+}
+
+/* ── FADE CARD ── */
+.fade-card {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.fade-card.visible { opacity: 1; transform: translateY(0); }
+
+/* ── BENEFIT CARDS ── */
+.ben-cards-section { padding: 6rem 2rem; background: var(--ben-cream); }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; margin-top: 4rem;
+}
+
+.b-card {
+  background: var(--ben-white);
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(74,44,18,.08);
+  box-shadow: 0 4px 30px rgba(44,26,14,.06);
+  transition: transform .35s ease, box-shadow .35s ease, opacity .7s ease;
+}
+.b-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(44,26,14,.14); }
+
+.b-card-accent { height: 6px; }
+.b-card-body   { padding: 2rem; }
+
+.b-card-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 1.6rem; margin-bottom: 1.25rem;
+}
+
+.b-card-num {
+  font-family: var(--ff-head); font-size: .75rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ben-bark); opacity: .5; margin-bottom: .5rem;
+}
+
+.b-card-title {
+  font-family: var(--ff-head); font-size: 1.35rem; font-weight: 700;
+  color: var(--ben-earth); line-height: 1.3; margin-bottom: 1rem;
+  white-space: pre-line;
+}
+
+.b-card-text { font-size: .95rem; line-height: 1.8; color: var(--ben-soil); opacity: .85; margin-bottom: .75rem; }
+
+.b-card-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+
+.b-tag {
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .3rem .75rem; border-radius: 999px;
+}
+
+/* Per-card theming */
+.card-1 .b-card-accent { background: linear-gradient(90deg, #4A7C3F, #7DAF73); }
+.card-1 .b-card-icon   { background: #EDF5EB; }
+.card-1 .b-tag         { background: #EDF5EB; color: #4A7C3F; }
+
+.card-2 .b-card-accent { background: linear-gradient(90deg, #C8944A, #E8B84B); }
+.card-2 .b-card-icon   { background: #FDF3E3; }
+.card-2 .b-tag         { background: #FDF3E3; color: #7A4A1E; }
+
+.card-3 .b-card-accent { background: linear-gradient(90deg, #9B4A2C, #C87840); }
+.card-3 .b-card-icon   { background: #FAF0EA; }
+.card-3 .b-tag         { background: #FAF0EA; color: #9B4A2C; }
+
+.card-4 .b-card-accent { background: linear-gradient(90deg, #4A7C3F, #2C5C22); }
+.card-4 .b-card-icon   { background: #EDF5EB; }
+.card-4 .b-tag         { background: #EDF5EB; color: #2C5C22; }
+
+/* ── MOMENTS ── */
+.moments-section {
+  background: var(--ben-earth);
+  position: relative; overflow: hidden;
+  padding: 6rem 2rem;
+}
+.moments-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 10% 50%, rgba(74,124,63,.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 70% at 90% 50%, rgba(200,148,74,.15) 0%, transparent 55%);
+}
+.moments-section .ben-container { position: relative; z-index: 1; }
+
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem; margin-top: 3rem;
+}
+
+.moment-card {
+  background: rgba(255,253,247,.06);
+  border: 1px solid rgba(255,253,247,.1);
+  border-radius: 16px; padding: 2rem 1.75rem;
+  backdrop-filter: blur(6px);
+  transition: background .3s ease, transform .3s ease, opacity .7s ease;
+}
+.moment-card:hover { background: rgba(255,253,247,.1); transform: translateY(-4px); }
+
+.moment-time {
+  font-size: .65rem; font-weight: 700;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--ben-sun); margin-bottom: .75rem;
+}
+.moment-icon  { font-size: 2rem; margin-bottom: 1rem; }
+.moment-title {
+  font-family: var(--ff-head); font-size: 1.15rem; font-weight: 700;
+  color: var(--ben-white); margin-bottom: .6rem;
+}
+.moment-desc  { font-size: .88rem; line-height: 1.75; color: rgba(255,253,247,.65); }
+
+/* ── QUOTE ── */
+.ben-promise {
+  background: var(--ben-mint);
+  text-align: center; padding: 5rem 2rem;
+}
+.ben-promise blockquote {
+  font-family: var(--ff-head);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic; font-weight: 400;
+  line-height: 1.55; color: var(--ben-earth);
+  max-width: 800px; margin: 0 auto 1.5rem;
+}
+.ben-promise cite {
+  font-size: .8rem; font-weight: 700;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--ben-leaf);
+}
+
+/* ── STONE MILL BENEFITS ── */
+.stone-mill-section { padding: 6rem 2rem; background: var(--ben-cream); }
+.stone-mill-intro {
+  font-size: 1.05rem; line-height: 1.8; color: var(--ben-soil);
+  max-width: 700px; margin-bottom: 3rem;
+}
+.stone-mill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+.stone-mill-card {
+  background: var(--ben-white);
+  border-radius: 16px; padding: 2rem;
+  border: 1px solid rgba(74,44,18,.08);
+  box-shadow: 0 4px 20px rgba(44,26,14,.06);
+  transition: transform .35s ease, box-shadow .35s ease, opacity .7s ease;
+}
+.stone-mill-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(44,26,14,.12); }
+.stone-mill-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--ben-cream);
+  display: grid; place-items: center;
+  font-size: 1.4rem; margin-bottom: 1rem;
+}
+.stone-mill-title {
+  font-family: var(--ff-head); font-size: 1.15rem; font-weight: 700;
+  color: var(--ben-earth); line-height: 1.3; margin-bottom: .25rem;
+}
+.stone-mill-subtitle {
+  display: inline-block;
+  font-size: .65rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ben-leaf); background: var(--ben-mint);
+  padding: .2rem .6rem; border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.stone-mill-body {
+  font-size: .9rem; line-height: 1.7; color: var(--ben-soil);
+  margin-bottom: 1rem;
+}
+.stone-mill-tip {
+  background: var(--ben-cream);
+  border-left: 3px solid var(--ben-sun);
+  padding: .75rem 1rem; border-radius: 0 8px 8px 0;
+  font-size: .85rem; line-height: 1.6; color: var(--ben-bark);
+}
+.stone-mill-tip strong { color: var(--ben-earth); }
+
+/* ── COMPARISON ── */
+.ben-compare { padding: 6rem 2rem; background: var(--ben-white); }
+
+.compare-table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 3rem; font-size: .9rem;
+}
+.compare-table thead th {
+  padding: 1.2rem 1.5rem; text-align: left;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  border-bottom: 2px solid rgba(44,26,14,.1);
+}
+.compare-table thead th:nth-child(2) {
+  background: var(--ben-earth); color: var(--ben-sun);
+  border-radius: 12px 12px 0 0; text-align: center;
+}
+.compare-table thead th:nth-child(3) { color: var(--ben-bark); opacity: .6; text-align: center; }
+
+.compare-table tbody tr {
+  border-bottom: 1px solid rgba(44,26,14,.06);
+  transition: background .2s;
+}
+.compare-table tbody tr:hover { background: var(--ben-cream); }
+.compare-table td { padding: 1.1rem 1.5rem; color: var(--ben-soil); }
+.compare-table td:nth-child(2) { background: rgba(44,26,14,.03); text-align: center; font-weight: 700; color: var(--ben-leaf); }
+.compare-table td:nth-child(3) { text-align: center; color: #C0392B; opacity: .7; }
+
+.check { color: var(--ben-leaf); font-size: 1.1rem; }
+.cross { color: #C0392B; font-size: 1.1rem; }
+
+/* ── CTA ── */
+.ben-cta {
+  background: linear-gradient(135deg, var(--ben-leaf) 0%, #2C5C22 100%);
+  text-align: center; padding: 6rem 2rem;
+  position: relative; overflow: hidden;
+}
+.ben-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,253,247,0.08)'/%3E%3C/svg%3E");
+}
+.ben-cta .ben-container { position: relative; z-index: 1; }
+.ben-cta h2 {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800; color: var(--ben-white); margin-bottom: 1rem;
+}
+.ben-cta p {
+  font-size: 1rem; color: rgba(255,253,247,.75);
+  max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.75;
+}
+.ben-btn {
+  display: inline-block;
+  background: var(--ben-sun); color: var(--ben-earth);
+  font-size: .8rem; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase;
+  padding: 1rem 2.5rem; border-radius: 999px;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.ben-btn:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(232,184,75,.45); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .compare-table { font-size: .78rem; }
+  .compare-table thead th, .compare-table td { padding: .8rem .75rem; }
+}

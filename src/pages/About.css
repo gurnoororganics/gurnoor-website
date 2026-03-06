@@ -1,0 +1,105 @@
+/* HERO */
+.about-hero {
+  background: var(--soil); padding: 5rem 8%;
+  position: relative; overflow: hidden;
+}
+.about-hero::after {
+  content: '';
+  position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,143,71,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.about-hero-tag {
+  font-size: .75rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--wheat); margin-bottom: .7rem;
+}
+.about-hero-h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800; line-height: 1.06; color: var(--cream); max-width: 16ch;
+}
+.about-hero-h1 em { font-style: italic; color: var(--leaf); }
+.about-hero-sub {
+  font-size: 1.05rem; color: rgba(245,239,227,.55);
+  line-height: 1.7; max-width: 48ch; margin-top: 1.2rem;
+}
+
+/* PROCESS */
+.process-section { padding: 6rem 8%; background: var(--white); }
+.process-steps {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2rem; margin-top: 3.5rem; position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute; top: 3.2rem; left: 6%; right: 6%;
+  height: 2px;
+  background: linear-gradient(to right, var(--leaf), var(--wheat));
+  z-index: 0;
+}
+.process-step { position: relative; z-index: 1; }
+.step-badge {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--sage); color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-head); font-weight: 800; font-size: 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 0 0 6px var(--white);
+}
+.step-image {
+  width: 100%; aspect-ratio: 4/3; border-radius: .75rem; overflow: hidden;
+  margin-bottom: 1.2rem; background: var(--linen);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(90,61,30,.2);
+}
+.step-image img { width: 100%; height: 100%; object-fit: cover; }
+.step-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--soil); margin-bottom: .5rem; }
+.step-desc  { font-size: .87rem; line-height: 1.65; color: var(--muted); }
+
+.section-divider { height: 1px; background: var(--linen); margin: 0 8%; }
+
+/* PROMISE */
+.promise-section { padding: 6rem 8%; background: var(--white); }
+.promise-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;
+}
+.promise-card {
+  background: var(--linen); border-radius: 1rem; padding: 2rem;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  border: 1px solid rgba(90,61,30,.06);
+  transition: box-shadow .3s, transform .3s;
+}
+.promise-card:hover { box-shadow: 0 10px 36px rgba(45,31,14,.08); transform: translateY(-3px); }
+.promise-icon {
+  width: 52px; height: 52px; flex-shrink: 0; border-radius: .75rem;
+  background: var(--sage); display: flex; align-items: center;
+  justify-content: center; font-size: 1.4rem;
+}
+.promise-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--soil); margin-bottom: .4rem; }
+.promise-text  { font-size: .9rem; line-height: 1.65; color: var(--muted); }
+
+/* VALUES */
+.values-section { padding: 6rem 8%; background: var(--linen); }
+.values-list { margin-top: 3rem; border: 1px solid rgba(90,61,30,.1); border-radius: 1rem; overflow: hidden; }
+.value-row {
+  display: flex; align-items: center; gap: 2rem; padding: 1.8rem 2rem;
+  background: var(--white); border-bottom: 1px solid rgba(90,61,30,.06);
+  transition: background .2s;
+}
+.value-row:last-child { border-bottom: none; }
+.value-row:hover { background: var(--cream); }
+.value-number { font-family: var(--ff-head); font-size: 1.5rem; font-weight: 800; color: rgba(200,165,90,.4); min-width: 2.5rem; }
+.value-title  { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--soil); min-width: 200px; }
+.value-desc   { font-size: .88rem; line-height: 1.6; color: var(--muted); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .process-steps { grid-template-columns: repeat(2,1fr); }
+  .process-steps::before { display: none; }
+}
+@media (max-width: 768px) {
+  .process-steps, .promise-grid { grid-template-columns: 1fr; }
+  .value-row { flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .value-title { min-width: unset; }
+}

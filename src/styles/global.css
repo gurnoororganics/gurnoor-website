@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Karla:wght@300;400;500;600&display=swap');
+
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --soil:    #2d1f0e;
+  --bark:    #5c3d1e;
+  --wheat:   #c8a55a;
+  --sage:    #4a6741;
+  --leaf:    #6b8f47;
+  --cream:   #f5efe3;
+  --linen:   #ede3d0;
+  --white:   #fdfaf5;
+  --text:    #1e1409;
+  --muted:   #7a6650;
+  --ff-head: 'Playfair Display', Georgia, serif;
+  --ff-body: 'Karla', sans-serif;
+  --ease:    cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+body  {
+  font-family: var(--ff-body);
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+img   { display: block; max-width: 100%; }
+a     { text-decoration: none; color: inherit; }
+ul    { list-style: none; }
+
+/* ─── GRAIN OVERLAY ──────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  opacity: .55;
+}
+
+/* ─── PAGE OFFSET (for fixed nav) ───────────────────────── */
+main { padding-top: 80px; }
+
+/* ─── SHARED TYPOGRAPHY ──────────────────────────────────── */
+.section-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .75rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--wheat);
+  margin-bottom: .9rem;
+}
+.section-label::before {
+  content: ''; display: block; width: 20px; height: 2px; background: var(--wheat);
+}
+
+.section-heading {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800; line-height: 1.15;
+  color: var(--soil); margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1rem; font-weight: 300; line-height: 1.75;
+  color: var(--muted); max-width: 56ch;
+}
+
+/* ─── SHARED BUTTONS ─────────────────────────────────────── */
+.btn-primary {
+  background: var(--sage); color: var(--cream);
+  padding: .85rem 2rem; border-radius: 2rem;
+  font-size: .9rem; font-weight: 600; letter-spacing: .04em;
+  display: inline-block; border: none; cursor: pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 20px rgba(74,103,65,.3);
+  font-family: var(--ff-body);
+}
+.btn-primary:hover {
+  background: var(--bark); transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(74,103,65,.35);
+}
+
+.btn-ghost {
+  color: var(--bark); border: 1.5px solid var(--bark);
+  padding: .85rem 2rem; border-radius: 2rem;
+  font-size: .9rem; font-weight: 600; letter-spacing: .04em;
+  display: inline-block; cursor: pointer; background: transparent;
+  transition: background .2s, color .2s;
+  font-family: var(--ff-body);
+}
+.btn-ghost:hover { background: var(--bark); color: var(--cream); }
+
+/* ─── FADE-UP ANIMATION ──────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── IMAGE PLACEHOLDER ──────────────────────────────────── */
+.img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 500;
+  color: var(--muted);
+  background: linear-gradient(135deg, var(--linen) 0%, #d4c4a0 100%);
+}
